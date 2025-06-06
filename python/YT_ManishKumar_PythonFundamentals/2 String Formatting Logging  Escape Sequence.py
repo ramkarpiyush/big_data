@@ -37,3 +37,5 @@ print(f"Cost of brick per unit is {unit_cost} rupees only...")
 #Logging:
 
 import logging
+from loguru import logger
+logger.info(f"value of _var variable is {unit_cost} only...")
