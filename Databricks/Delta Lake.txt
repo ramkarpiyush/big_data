@@ -1,0 +1,104 @@
+𝐇𝐨𝐰 𝐃𝐞𝐥𝐭𝐚 𝐋𝐚𝐤𝐞 𝐇𝐚𝐧𝐝𝐥𝐞𝐬 𝐓𝐢𝐦𝐞 𝐓𝐫𝐚𝐯𝐞𝐥 𝐚𝐧𝐝 𝐕𝐞𝐫𝐬𝐢𝐨𝐧𝐢𝐧𝐠 𝐯𝐢𝐚 _𝐝𝐞𝐥𝐭𝐚_𝐥𝐨𝐠
+
+People describe Delta Lake's time travel as a way to access historical versions of data based on either the version number or the insertion timestamp — but how its internally doing?
+
+♻️ 𝟏. 𝐖𝐡𝐚𝐭 𝐢𝐬 𝐃𝐞𝐥𝐭𝐚 𝐋𝐚𝐤𝐞 𝐬𝐨𝐥𝐯𝐢𝐧𝐠?
+Data lakes (HDFS/S3) don't have ACID transactions
+You can't UPDATE, DELETE, or ROLLBACK
+
+Delta Lake brings:
+-> ACID properties
+-> Versioning
+-> Time travel
+-> Schema evolution
+
+It achieves all this by introducing one core thing:
+👉 the _delta_log/ folder
+
+♻️ 𝟐. 𝐖𝐡𝐚𝐭’𝐬 𝐢𝐧𝐬𝐢𝐝𝐞 _𝐝𝐞𝐥𝐭𝐚_𝐥𝐨𝐠/?
+-> JSON files: transaction logs recording metadata, file changes, and schema updates.
+Eg: 0000.json
+-> Checkpoint files: Parquet files that consolidate many JSON logs into a single optimized snapshot for faster reads.
+Eg: 0001000.checkpoint.parquet
+-> CRC/Metadata files: Used for internal tracking
+
+♻️ 𝟑. 𝐇𝐨𝐰 𝐃𝐞𝐥𝐭𝐚 𝐓𝐫𝐚𝐧𝐬𝐚𝐜𝐭𝐢𝐨𝐧𝐬 𝐖𝐨𝐫𝐤
+Every operation (INSERT/UPDATE/DELETE/MERGE) does this:
+- Creates or modifies data files (Parquet)
+- Logs changes in a new JSON file (_delta_log/), recording what changed
+- The JSON contains: new files added, old files removed, schema, partition info, operation metrics
+- Commits atomically
+- Sequential JSONs = version history
+- After N commits → Delta writes a checkpoint for performance
+
+♻️ 𝟒. 𝐈𝐧𝐬𝐞𝐫𝐭 𝐄𝐱𝐚𝐦𝐩𝐥𝐞
+Insert Alice, Bob:
+
+-> It creates a new Parquet file: part-00-abc.snappy.parquet
+-> It writes the first log file:
+_delta_log/0000.json
+{
+ "add": {
+ "path": "part-00-abc.snappy.parquet",
+ "size": 12345,
+ "modificationTime": t1,
+ "dataChange": true,
+ "partitionValues": {}
+ },
+ "commitInfo": {
+ "operation": "WRITE",
+ "operationParameters": {
+ "mode": "Append"
+ },
+ "isBlindAppend": true,
+ "timestamp": t2
+ }
+}
+
+♻️ 𝟓. 𝐄𝐱𝐚𝐦𝐩𝐥𝐞: 𝐔𝐩𝐝𝐚𝐭𝐞 𝐃𝐚𝐭𝐚
+Now you run an UPDATE changing Alice to "Alicia":
+
+Delta writes:
+-> A new Parquet file part-01-def.snappy.parquet (with updated record)
+-> Marks old file part-00-abc.snappy.parquet as removed.
+A new JSON log:
+_delta_log/0000.json
+
+{
+ "add": {
+ "path": "part-00001-def.snappy.parquet",
+ "size": 56789,
+ "modificationTime": t3,
+ "dataChange": true,
+ "partitionValues": {}
+ },
+ "remove": {
+ "path": "part-00000-abc.snappy.parquet",
+ "deletionTimestamp": t4,
+ "dataChange": true
+ },
+ "commitInfo": {
+ "operation": "UPDATE",
+ "operationParameters": {},
+ "timestamp": t5
+ }
+}
+
+♻️ 𝟔. 𝐇𝐨𝐰 𝐓𝐢𝐦𝐞 𝐓𝐫𝐚𝐯𝐞𝐥 𝐖𝐨𝐫𝐤𝐬
+Delta knows:
+Version 0 → only part-00-abc
+Version 1 → part-01-def, part-00-abc is deleted
+
+When you query:
+SELECT * FROM customer VERSION AS OF 0
+It reads commit 0000.json
+It scans part-00-abc.snappy.parquet
+
+When you query:
+SELECT * FROM customer VERSION AS OF 1
+It reads commit 0001.json
+It scans part-01-def.snappy.parquet
+
+♻️ Every write creates a new "snapshot" but does NOT physically delete immediately
+
+#spark #data
