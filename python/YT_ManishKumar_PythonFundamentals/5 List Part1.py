@@ -25,8 +25,23 @@ last_num = my_list[-1]	        # Get last item
 print(f"Last num is {last_num}")
 
 # 4. Slice list	
+"""
+The syntax for slicing is:
+string[start:stop:step]
+where,
+    start: where the slice starts (default is 0 if not specified).
+    stop: where the slice ends (not included).
+    step: how many characters to move forward (or backward if negative).
+            e.g. -1 → means move one step backward.
+"""
 sublist = my_list[1:3]	        # Get sublist [20, 30]
 print(f"Slice list: {sublist}")
+
+# Reverse each element in a list and make a new list
+list = ["SQL", "Python", "Databricks", "AWS", "Spark"]
+new_list = []
+for i in list:
+    print(i[::-1])
 
 # 5. Modify element	
 my_list[0] = 99	                # Change item at index 0

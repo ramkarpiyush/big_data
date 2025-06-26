@@ -13,8 +13,9 @@ def group_anagrams(words):
     
     for word in words:
         # Create the sorted key
-        sorted_word = ''.join(sorted(word))
-        
+        sorted_word = ''.join(sorted(word))         # ''.join(...) → turns list into string
+                                                    # sorted() → gives list of sorted letters
+                                                    
         # Check if the key exists
         if sorted_word in anagram_dict:
             anagram_dict[sorted_word].append(word)
