@@ -37,3 +37,35 @@ for i in input:
 
 print(count)
 
+
+# Method 3:
+print("Method 3:")
+_data = "#Big Data Engineering @123"
+
+print(len(_data))
+
+empty_dic = {}
+"""
+for i in _data.lower():
+    if i in empty_dic:
+        empty_dic[i]= empty_dic[i]+1
+    else:
+        empty_dic[i] = 1
+
+for i in _data.lower():
+    if i in empty_dic:
+        empty_dic[i]= empty_dic[i]+1
+    else:
+        empty_dic[i] = 1
+"""
+        
+for i in _data.lower():
+    if i.isalpha():
+        if i in empty_dic:
+            empty_dic[i]=empty_dic[i]+1
+        else:
+            empty_dic[i]=1
+    else:
+        continue
+
+print(empty_dic)

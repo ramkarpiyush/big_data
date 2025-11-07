@@ -28,7 +28,6 @@ merge_dic = {**data, **new_dict}
 
 print(merge_dic)
 
-
 # Pop and Popitem:
 logger.info(merge_dic.pop("git"))
 

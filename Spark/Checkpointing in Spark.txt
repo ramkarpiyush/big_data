@@ -1,0 +1,43 @@
+What is Checkpointing in Spark?
+
+
+Checkpointing in Apache Spark is a mechanism to store intermediate or final state information in a reliable storage location to prevent data loss and allow fault tolerance in case of failures.
+It is mainly used in Structured Streaming but can also be applied in RDD-based applications.
+
+Types of Checkpointing
+? 1. Metadata Checkpointing (Used in Structured Streaming)
+Stores streaming metadata in a persistent location.
+Ensures that a stream resumes from the last successful processing point in case of failures.
+
+Commonly used in Databricks Autoloader, Delta Live Tables, and ADF streaming pipelines.
+
+Example in Structured Streaming:
+df.writeStream \
+ .format("delta") \
+ .option("checkpointLocation", "dbfs:/mnt/checkpoints/") \
+ .start("dbfs:/mnt/output/")
+
+?? Benefit: Prevents data duplication and ensures exactly-once processing.
+
+? 2. Data Checkpointing (Used in RDDs & Stateful Streaming)
+Stores the entire RDD or stateful streaming data to disk.
+Used when long lineage graphs slow down job execution.
+
+Example in RDD-based Spark Jobs:
+rdd.checkpoint() # Stores RDD in HDFS, ADLS, or DBFS
+
+?? Benefit: Reduces dependency chains in large iterative computations.
+
+Why is Checkpointing Important?
+? Fault Tolerance – Recovers from failures without reprocessing all data.
+? Avoids Data Duplication – Ensures exactly-once processing in streaming.
+? Optimized Performance – Reduces dependency lineage for long-running jobs.
+? State Management – Essential for stateful streaming operations like mapWithState().
+
+Where to Store Checkpoints?
+Databricks FileStore (DBFS)
+Azure Data Lake Storage (ADLS)
+HDFS (Hadoop Distributed File System)
+S3 (AWS) or Blob Storage
+
+Shilpa Das
