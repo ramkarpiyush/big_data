@@ -1,0 +1,14 @@
+# AES Encryption:
+AES = Advanced Encryption Standard
+
+- AES is a symmetric encryption algorithm widely used for securing data.
+
+# Key Features of AES:
+- Symmetric Key: Same key is used for encryption and decryption.
+- Block Cipher: Operates on fixed-size blocks of data (128 bits).
+- Key Sizes: 128, 192, or 256 bits.
+- Rounds:
+    AES-128 → 10 rounds
+    AES-192 → 12 rounds
+    AES-256 → 14 rounds
+- Security: Resistant to all known practical attacks when implemented correctly.

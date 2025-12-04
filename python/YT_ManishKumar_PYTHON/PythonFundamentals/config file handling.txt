@@ -1,0 +1,16 @@
+# .ini file:
+- An .ini file is a simple configuration file format commonly used to store settings for applications.
+-  It’s plain text, organized into sections, keys, and values.
+
+# Components
+1. Sections
+- Defined by names in square brackets [ ].
+- Group related settings together. Example: [Database], [Logging].
+
+2. Keys and Values
+- Each setting is a key = value pair.
+- Values can be strings, numbers, booleans, or paths. Example: host = localhost, port = 3306.
+
+3. Comments
+- Start with ; or #.
+
