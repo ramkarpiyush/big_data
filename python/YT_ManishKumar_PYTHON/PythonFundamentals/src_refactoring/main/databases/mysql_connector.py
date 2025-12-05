@@ -13,7 +13,7 @@ class MySqlConnection:
         try:
             self.connection = mysql.connector.connect(host = self.config["mysql_database"]["host"],
                                                 user = self.config["mysql_database"]["user"],
-                                                password = decrypt(self.config["mysql_database"]["password"])
+                                                password = self.config["mysql_database"]["password"] #decrypt(self.config["mysql_database"]["password"])
                                                 ,database = self.config["mysql_database"]["database"]
                                                 )
             logger.info("MySQL Connection Suucessful.")
@@ -62,24 +62,3 @@ class MySqlCrudOperations:
         finally:
             self.connection.commit()
 
-# def read_from_mysql(config, query):
-#     try:    
-        
-        
-#         logger.info(f"{connection}")
-
-#         cursor = connection.cursor()
-        
-#         cursor.execute(query)
-#         result = cursor.fetchall()
-#         logger.info(f"{result}")
-#         logger.info("Query done in the database")
-#         return result
-
-#     except Exception as e:
-#         logger.info(f"Error occured in MySQL DB {e}")
-#         raise e
-    
-#     finally:
-#         connection.close()
-#         cursor.close()
