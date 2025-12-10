@@ -114,11 +114,9 @@ df.select(expr("*"), lit(1).alias("One")).show()
 
 df.withColumn("numberOne", lit(1)).show(2)
 
-
 df.withColumn("within_country", expr("ORIGIN_COUNTRY_NAME = DEST_COUNTRY_NAME")).show(2)
 
 df.withColumn("Destination", expr("DEST_COUNTRY_NAME")).show()
-
 
 df.withColumn("Destination", expr("DEST_COUNTRY_NAME")).columns
 
