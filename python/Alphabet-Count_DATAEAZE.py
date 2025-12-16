@@ -24,7 +24,7 @@ for i in ls:
 print(count_dict)        
 
 # Method 2:
-string = "AbCabXYZbbccc"
+string = "My Name Is Piyush" # "AbCabXYZbbccc"
 count = {}
 
 input = string.lower()
@@ -58,6 +58,7 @@ for i in _data.lower():
     else:
         empty_dic[i] = 1
 """
+_data = "#Big Data Engineering @123"
         
 for i in _data.lower():
     if i.isalpha():

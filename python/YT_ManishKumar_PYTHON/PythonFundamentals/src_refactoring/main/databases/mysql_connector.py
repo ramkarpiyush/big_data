@@ -47,7 +47,7 @@ class MySqlCrudOperations:
                 cursor.close()  
                 logger.info("Cusrsor closed.")
 
-    def inser_from_mysql(self, query, parameter):
+    def inser_from_mysql(self, query):
         try:    
             cursor = self.connection.cursor()
             cursor.execute(query)

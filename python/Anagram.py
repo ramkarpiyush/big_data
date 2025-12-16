@@ -1,5 +1,4 @@
 # Anagram:
-
 words = ["eat", "tea", "tan", "ate", "nat", "bat"]
 
 anagram_dict = {}

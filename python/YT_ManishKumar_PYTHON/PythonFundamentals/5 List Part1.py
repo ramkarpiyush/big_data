@@ -47,23 +47,34 @@ for i in list:
 my_list[0] = 99	                # Change item at index 0
 print(my_list)
 
-# 6. Append element: It modifies the list in place, It returns None
-# Adds x as a single item to the end of the list. If x is a list, it adds the whole list as one element (nested list).
-my_list.append(40)	            # Add item to end
-print(f"Output: append 40 in my_list= {my_list}")
+# 6. Append element: 
+# Adds a single element to the end of the list.
+# It modifies the list in place, It returns None
+# Adds x as a single item to the end of the list. 
+# If x is a list, it adds the whole list as one element (nested list).
+app_list = [10, 20]
+app_list.append(40)	            # Add item to end
+print(f"Output: append 40 in my_list= {app_list}")
+
+nw_ls = [100, 200]
+app_list.append(nw_ls)
+print(app_list)	
 
 # list.extend(iterable):
 # Adds each element of iterable individually to the list (flattens one level).
+# Adds multiple elements from an iterable (like a list, tuple, set) to the end of the list.
+ex_list = ["Impetus", "Python"]
 names = ["Piyush", "Dell"]
 
-list_num.extend(names)
-print(list_num)
+ex_list.extend(names)
+print(ex_list)
 
 # Insert at index [list.insert(i, x)]:
 my_list.insert(1, 15)	        # Add item at specific position
 print("Insert at index:", my_list)
 
-# Note: all three methods — append(), extend(), and insert() — modify the list in-place, and they all return None.
+# Note: all three methods — append(), extend(), and insert() — 
+# modify the list in-place, and they all return None.
 
 
 # Remove by value [list.remove(x)]:
@@ -78,9 +89,25 @@ print(list_)
 list_.clear()
 print(list_)
 
-# Pop element	
+# Pop element:	
+# Syntax: list.pop(index)       
+# index (optional): Position of the element to remove.
+# If no index is given, pop() removes the last element.
+
 item = my_list.pop()            # Remove and return last item
 print("Pop element:", item)
+
+numbers = [10, 20, 30, 40]
+# Remove last element
+removed = numbers.pop()
+print(removed)      # 40
+print(numbers)      # [10, 20, 30]
+
+# Remove element at index 1
+removed = numbers.pop(1)
+print(removed)      # 20
+print(numbers)      # [10, 30]
+
 
 # Length of list	
 len_list = len(my_list)	        # Count of items
@@ -122,8 +149,10 @@ print(_list)
     iterable: The data to be sorted (e.g., list, tuple, set, dict, string).
     key	(Optional): A function that serves as a sort key.
     reverse	(Optional): If True, the list is sorted in descending order. Default is False.
-'''
 
+- Returns a new sorted list, leaving the original unchanged.
+- Works on: Any iterable (lists, tuples, sets, dict keys).    
+'''
 sorted_fun = sorted(_list)
 print(sorted_fun)
 

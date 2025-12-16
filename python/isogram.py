@@ -45,7 +45,7 @@ def is_isogram_set(input: str)-> bool:
     
     return True
 
-print(is_isogram_set('Data'))
+logger.info(is_isogram_set('Data'))
 
 
 """
@@ -59,3 +59,42 @@ This gives you only the function name as a clean string, not the memory address 
     __name__ is a special built-in attribute in Python that stores the identifier name of the function or module.
 
 """
+
+
+
+def is_isogm(s):
+    seen = set()
+    for ch in s.lower():
+        if ch.isalpha():  # ignore non-letters
+            if ch in seen:
+                return False
+            seen.add(ch)
+        return True
+        
+
+logger.info(is_isogm("Big"))
+
+
+
+def is_isogram2(s: str) -> bool:
+    seen = set()
+    for ch in s.lower():
+        if ch.isalpha():
+            if ch in seen:
+                return False
+                break
+            else:           # break on duplicate
+                seen.add(ch)
+        else:
+            return True             # loop finished, no break -> isogram
+    return True                # we broke -> not isogram
+
+logger.info(is_isogram2("Bigg"))
+
+# It’s about control flow in Python’s for…else:
+# The else block runs only if the loop completes naturally (no break).
+# In that case, we return True because no duplicates were found.
+# If we hit a break (i.e., we found a duplicate), the else block is skipped.
+# Execution continues to the next statement after the loop, which is return False.
+
+
