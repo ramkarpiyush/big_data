@@ -54,3 +54,10 @@ logger.info(obj2.print_details())
 
 
 
+
+
+# POLYMORPHISM:
+# Polymorphism means "many forms"
+# In Python, Polymorphism allows the same function or method name 
+# to work in different ways depending on the object or data type.
+

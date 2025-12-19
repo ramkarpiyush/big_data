@@ -1,0 +1,9 @@
+# What is config.set()?
+
+# set():
+- set() is a method of Python’s configparser.ConfigParser class used to write/update an option (key-value) inside a section of an INI-style configuration.
+- Syntx: ConfigParser.set(section, option, value=None)
+- Parameters:
+    > section (str): The name of the section (e.g., "mysql_database"). Must already exist, or NoSectionError is raised.
+    > option (str): The option/key name (e.g., "password"). By default, ConfigParser normalizes option names to lowercase.
+    > value (str or None): The value to store. Must be a string unless allow_no_value=True was set when the parser was created.
