@@ -1,0 +1,7 @@
+Logs Levels:
+1. Trace (Not available in Python)
+2. Debug
+3. Info
+4. Warning
+5. Error
+6. Critical

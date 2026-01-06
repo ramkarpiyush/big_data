@@ -41,10 +41,10 @@ def decrypt(enc):
 
     return unpad(cipher.decrypt(base64.b64decode(enc))).decode('utf8')
 
-print(encrypt("root"))
+# print(encrypt("root"))
 
-print(encrypt("12345678"))
+# print(encrypt("12345678"))
 
-print(decrypt("ck3XDyegOZADJBa54aUl+A=="))
+# print(decrypt("ck3XDyegOZADJBa54aUl+A=="))
 
 

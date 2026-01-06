@@ -1,29 +1,35 @@
 # Duplicate Characters:
 # Find and print all duplicate characters in a string.
-
 """
 Input:  "programming"
 Output: g, r, m
 """
-
 input = "programming"
 
 emp_dic = {}
-
 for i in input.lower():
     if i.isalpha():
         if i in emp_dic:
             emp_dic[i]=emp_dic[i]+1
         else:
             emp_dic[i]=1
-
 print(emp_dic)
 
 # Solution 1:
+res = []
 for i,j in emp_dic.items():
     if j>1:
         print(f"{i}: {j}")
-        
+        res.append(i)
+print(res)
+print(", ".join(res))
+
+# OR
+
+filtered = {key for key, value in emp_dic.items() if value > 1}
+print(", ".join(filtered))
+
+
 # Solution 2:        
 duplicate_dic = {}
 for i in emp_dic:
@@ -31,8 +37,6 @@ for i in emp_dic:
         duplicate_dic[i]=emp_dic[i]
 print(duplicate_dic)
             
-
-
 # Approach 2: Using a set while scanning 
 
 def duplicates_set_scan(s: str):

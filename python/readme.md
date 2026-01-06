@@ -1,17 +1,19 @@
-➊ List Comprehensions and Dict Comprehensions
-↳ Optimize iteration with one-liners
-↳ Fast filtering and transformations
-↳ O(n) time complexity
+# Python for Data Engineering:
 
-➋ Lambda Functions
-↳ Anonymous functions for concise operations
-↳ Used in map(), filter(), and sort()
-↳ Key for functional programming
+- 1. List Comprehensions and Dict Comprehensions:
+    - Optimize iteration with one-liners
+    - Fast filtering and transformations
+    - O(n) time complexity
 
-➌ Functional Programming (map, filter, reduce)
-↳ Apply transformations efficiently
-↳ Reduce dataset size dynamically
-↳ Avoid unnecessary loops
+- 2. Lambda Functions:
+    - Anonymous functions for concise operations
+    - Used in map(), filter(), and sort()
+    - Key for functional programming
+
+- 3. Functional Programming (map, filter, reduce):
+    - Apply transformations efficiently
+    - Reduce dataset size dynamically
+    - Avoid unnecessary loops
 
 ➍ Iterators and Generators
 ↳ Efficient memory handling with yield
@@ -59,10 +61,7 @@
 ↳ Handling large-scale data ingestion
 
 
-
-
-
-# Afaque Ahmad
+# DSA Topics (By Afaque Ahmad)
 - Arrays
 - Strings
 - Binary Search

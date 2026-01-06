@@ -1,0 +1,11 @@
+customer_id,first_name,last_name,email,phone,dob,created_at,country,city,postal_code,status
+1001,Aarav,Sharma,aarav.sharma@example.com,+91-9876543201,1990-03-12,2024-11-15,India,Pune,411001,active
+1002,Isha,Patil,isha.patil@example.com,+91-9876543202,1988-07-22,2024-11-18,India,Mumbai,400001,active
+1003,Rohan,Kulkarni,rohan.kulkarni@example.com,+91-9876543203,1995-12-02,2024-12-01,India,Nagpur,440001,active
+1004,Neha,Verma,neha.verma@example.com,+91-9876543204,1992-09-17,2024-12-05,India,Delhi,110001,inactive
+1005,Vikram,Joshi,vikram.joshi@example.com,+91-9876543205,1986-05-30,2024-12-06,India,Bengaluru,560001,active
+1006,Simran,Kaur,simran.kaur@example.com,+91-9876543206,1993-01-14,2024-12-08,India,Chandigarh,160017,active
+1007,Aditya,Deshmukh,aditya.deshmukh@example.com,+91-9876543207,1991-04-09,2024-12-10,India,Pune,411028,active
+1008,Priya,Nair,priya.nair@example.com,+91-9876543208,1997-11-11,2024-12-12,India,Kochi,682001,active
+1009,Sahil,Gupta,sahil.gupta@example.com,+91-9876543209,1990-08-19,2024-12-13,India,Jaipur,302001,inactive
+1010,Ananya,Mehta,ananya.mehta@example.com,+91-9876543210,1994-02-25,2024-12-14,India,Ahmedabad,380001,active

@@ -2,14 +2,10 @@
 TASK:
 Reverse the list with the first character of each element capitalized,
 and remove any duplicate
-.
-
 Codition: Without using reverse and capitalize function
 """
 
-# SOlution:
-
-data = ["sql", "scala", "pyTHon", "javA", "java" "pyspark"]
+data = ["sql", "scala", "pyTHon", "javA", "java", "pyspark"]
 
 # Method 1:
 # Step 1: Reverse list manually using slicing
@@ -24,7 +20,7 @@ for item in reversed_data:
 # Step 3: Capitalize first letter manually (without using capitalize())
 final_data = []
 for word in unique_data:
-    formatted = word[0].upper() + word[1:].lower()
+    formatted = word[0][0].upper() + word[1:].lower()
     final_data.append(formatted)
 
 print(final_data)
@@ -42,3 +38,18 @@ def list_reverse(l):
     print(rev)
 
 list_reverse(data)
+
+
+print("solution: 3")
+data = ["sql", "scala", "pyTHon", "javA", "java", "pyspark"]
+
+unique = set()
+for i in data:
+    unique.add(i.lower())
+print(unique)
+
+for word in unique:
+    char = word[0].upper() + word[1:len(word)]
+    print(char)
+
+
