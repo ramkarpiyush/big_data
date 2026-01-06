@@ -70,3 +70,17 @@
 - DP (Basic 1D)
 - Linked Lists
 - Sliding Window
+
+
+
+<details>
+<summary>Click to expand</summary>
+
+### Hidden Content
+You can put **Markdown** inside this section, like:
+- Lists
+- Code blocks
+- Images
+
+```python
+print("This is inside a collapsible section")
