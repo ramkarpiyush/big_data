@@ -72,15 +72,16 @@
 - Sliding Window
 
 
-
-<DSA Topics (By Afaque Ahmad)>
+### DSA Topics (By Afaque Ahmad):
+<details>
 <summary>Click to expand</summary>
 
-### Hidden Content
-You can put **Markdown** inside this section, like:
-- Lists
-- Code blocks
-- Images
-
-```python
-print("This is inside a collapsible section")
+- Arrays
+- Strings
+- Binary Search
+- Recursion 
+- Stacks
+- Queues
+- DP (Basic 1D)
+- Linked Lists
+- Sliding Window
