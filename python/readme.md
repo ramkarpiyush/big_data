@@ -73,7 +73,7 @@
 
 
 
-<details>
+<DSA Topics (By Afaque Ahmad)>
 <summary>Click to expand</summary>
 
 ### Hidden Content
