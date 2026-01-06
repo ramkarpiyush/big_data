@@ -1,0 +1,3 @@
+[submodule "spark_local_setup"]
+	path = spark_local_setup
+	url = https://github.com/manisnitt/spark_local_setup.git
