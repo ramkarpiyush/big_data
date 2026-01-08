@@ -61,20 +61,16 @@
     - Handling large-scale data ingestion
 
 # Python DSA :
-(List suggested by Afaque Ahmad)
-
-
-
-### Python DSA:
 <details>
 <summary>Click to expand</summary>
-## (List suggested by Afaque Ahmad)
-    1. Arrays
-    2. Strings
-    3. Binary Search
-    4. Recursion 
-    5. Stacks
-    6. Queues
-    7. DP (Basic 1D)
-    8. Linked Lists
-    9. Sliding Window
+
+*(Python DSA topics by Afaque Ahmad)*
+1. Arrays
+2. Strings
+3. Binary Search
+4. Recursion 
+5. Stacks
+6. Queues
+7. DP (Basic 1D)
+8. Linked Lists
+9. Sliding Window
