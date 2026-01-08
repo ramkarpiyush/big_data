@@ -60,28 +60,21 @@
     - boto3, gcsfs, azure-storage
     - Handling large-scale data ingestion
 
-## DSA Topics (By Afaque Ahmad)
-- Arrays
-- Strings
-- Binary Search
-- Recursion 
-- Stacks
-- Queues
-- DP (Basic 1D)
-- Linked Lists
-- Sliding Window
+# Python DSA :
+(List suggested by Afaque Ahmad)
 
 
-### DSA Topics (By Afaque Ahmad):
+
+### Python DSA:
 <details>
 <summary>Click to expand</summary>
-
-- Arrays
-- Strings
-- Binary Search
-- Recursion 
-- Stacks
-- Queues
-- DP (Basic 1D)
-- Linked Lists
-- Sliding Window
+## (List suggested by Afaque Ahmad)
+    1. Arrays
+    2. Strings
+    3. Binary Search
+    4. Recursion 
+    5. Stacks
+    6. Queues
+    7. DP (Basic 1D)
+    8. Linked Lists
+    9. Sliding Window
