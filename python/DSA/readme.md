@@ -15,7 +15,8 @@
     - Strings: [group_anagram](../interview_que/group_anagram.py)
 2. Top K Frequent Elements: Heap, HashMap  
 3. Sliding Window Maximum: Deque, Arrays  
-4. Merge Intervals: Sorting, Greedy  
+4. Merge Intervals: 
+    - Sorting, Greedy: [merge-intervals](../DSA/merge-intervals.ipynb)
 5. Two Sum: 
     - Arrays: [two_sum](../LeetCoder/two-sum.ipynb#1-two-sum)
     - Hashing  
