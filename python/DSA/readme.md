@@ -12,7 +12,7 @@
 # DSA Problems:
 1. Group Anagrams: 
     - Hashing
-    - [Strings](../interview_que/group_anagram.py)  
+    - Strings: [group_anagram](big_data/python/interview_que/group_anagram.py)
 2. Top K Frequent Elements: Heap, HashMap  
 3. Sliding Window Maximum: Deque, Arrays  
 4. Merge Intervals: Sorting, Greedy  
