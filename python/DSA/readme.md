@@ -2,12 +2,16 @@
 1. Arrays
 2. Strings
 3. Binary Search
-4. Recursion 
-5. Stacks
-6. Queues
-7. DP (Basic 1D)
-8. Linked Lists
-9. Sliding Window
+4. Sorting and Searching
+5. Hashmaps and Sets
+6. Recursion 
+7. Stacks
+8. Queues
+9. DP (Basic 1D)
+10. Linked Lists
+11. Sliding Window
+12. Basic Tree/Graphs
+13. Two Pointers
 
 # DSA Problems:
 1. [group_anagram](../interview_que/group_anagram.py)
