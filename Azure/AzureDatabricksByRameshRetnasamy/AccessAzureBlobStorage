@@ -60,6 +60,6 @@ Microsoft and Azure Databricks strongly recommend using the ABFS driver instead 
 3. ABFS Supports Modern Authentication (SAS, OAuth, Managed Identity)
 
 
-abfs[s]://<container>@<storage-account_name>.dfs.core.windows.net/<folder_path/file_name>
+abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/<folder_path/file_name>
 
     abfss[s]:// : The Optional "s" ensures TLS (Transport Level Security). The Data will encrypted while transit.
