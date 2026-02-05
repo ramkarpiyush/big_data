@@ -1,0 +1,274 @@
+Perfect 👍
+CSV in **Azure Blob + Databricks** is a **very common and clean setup**.
+Let’s tailor everything **specifically for CSV files**, step by step, **Databricks-native**.
+
+---
+
+# 🧠 Architecture (CSV → Q&A in Databricks)
+
+```
+Azure Blob Storage (CSV)
+        ↓
+Databricks (Spark reads CSV)
+        ↓
+Row → Text conversion
+        ↓
+Chunking
+        ↓
+Azure OpenAI Embeddings
+        ↓
+Vector Store (FAISS / Delta)
+        ↓
+LangChain + Azure OpenAI
+        ↓
+Answers
+```
+
+---
+
+## Example CSV (`employees.csv`)
+
+```csv
+id,name,role,department,experience
+1,Rahul,Data Engineer,Analytics,5
+2,Anita,Data Scientist,ML,3
+3,Rohit,Backend Engineer,Platform,6
+```
+
+---
+
+# 1️⃣ Databricks Cluster Setup
+
+* Runtime: **13.x+ / 14.x**
+* Python 3.9+
+* Internet access to Azure OpenAI
+
+Install libs (Notebook cell):
+
+```python
+%pip install langchain langchain-community langchain-openai faiss-cpu tiktoken
+```
+
+Restart cluster.
+
+---
+
+# 2️⃣ Mount Azure Blob / ADLS (once)
+
+```python
+configs = {
+  "fs.azure.account.auth.type": "OAuth",
+  "fs.azure.account.oauth.provider.type":
+    "org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider",
+  "fs.azure.account.oauth2.client.id": "<CLIENT_ID>",
+  "fs.azure.account.oauth2.client.secret": "<CLIENT_SECRET>",
+  "fs.azure.account.oauth2.client.endpoint":
+    "https://login.microsoftonline.com/<TENANT_ID>/oauth2/token"
+}
+
+dbutils.fs.mount(
+  source="abfss://documents@<storage_account>.dfs.core.windows.net/",
+  mount_point="/mnt/docs",
+  extra_configs=configs
+)
+```
+
+CSV path:
+
+```
+/mnt/docs/employees.csv
+```
+
+---
+
+# 3️⃣ Read CSV in Databricks (Spark)
+
+```python
+df = spark.read.option("header", True).csv("/mnt/docs/employees.csv")
+display(df)
+```
+
+---
+
+# 4️⃣ Convert CSV Rows → Text (Important Step)
+
+LLMs work on **text**, not rows.
+
+```python
+rows = df.collect()
+
+documents = []
+for r in rows:
+    doc = f"""
+Employee Name: {r['name']}
+Role: {r['role']}
+Department: {r['department']}
+Experience: {r['experience']} years
+"""
+    documents.append(doc)
+
+print(documents[0])
+```
+
+---
+
+# 5️⃣ Chunk the Text
+
+```python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=300,
+    chunk_overlap=50
+)
+
+chunks = []
+for d in documents:
+    chunks.extend(splitter.split_text(d))
+
+len(chunks)
+```
+
+---
+
+# 6️⃣ Azure OpenAI Embeddings (Databricks)
+
+Store key in **Databricks Secret Scope** (recommended).
+
+```python
+from langchain_openai import AzureOpenAIEmbeddings
+
+embeddings = AzureOpenAIEmbeddings(
+    azure_endpoint="https://<your-resource>.openai.azure.com/",
+    api_key=dbutils.secrets.get("kv-scope", "azure-openai-key"),
+    api_version="2024-02-15-preview",
+    model="embedding-deploy"
+)
+```
+
+---
+
+# 7️⃣ Create Vector Store
+
+## Option A️⃣ FAISS (Fast POC)
+
+```python
+from langchain_community.vectorstores import FAISS
+
+vectorstore = FAISS.from_texts(chunks, embeddings)
+vectorstore.save_local("/dbfs/vector_store/faiss")
+```
+
+---
+
+## Option B️⃣ Delta Table (Production)
+
+```python
+data = []
+for chunk in chunks:
+    vec = embeddings.embed_query(chunk)
+    data.append((chunk, vec))
+
+emb_df = spark.createDataFrame(data, ["text", "embedding"])
+emb_df.write.mode("overwrite").saveAsTable("csv_embeddings")
+```
+
+---
+
+# 8️⃣ Ask Questions (Q&A)
+
+```python
+from langchain_openai import AzureChatOpenAI
+from langchain.prompts import PromptTemplate
+from langchain.chains import RetrievalQA
+
+vectorstore = FAISS.load_local(
+    "/dbfs/vector_store/faiss",
+    embeddings,
+    allow_dangerous_deserialization=True
+)
+
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+
+prompt = PromptTemplate(
+    template="""
+You are a data assistant.
+Answer ONLY using the provided context.
+If the answer is not present, say "Data not available".
+
+Context:
+{context}
+
+Question:
+{question}
+""",
+    input_variables=["context", "question"]
+)
+
+llm = AzureChatOpenAI(
+    azure_endpoint="https://<your-resource>.openai.azure.com/",
+    api_key=dbutils.secrets.get("kv-scope", "azure-openai-key"),
+    api_version="2024-02-15-preview",
+    deployment_name="chat-deploy",
+    temperature=0
+)
+
+qa = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=retriever,
+    chain_type_kwargs={"prompt": prompt}
+)
+
+qa.run("Who has more than 4 years of experience?")
+```
+
+---
+
+# 9️⃣ Example Questions That Work Well
+
+✅ Who is a data engineer?
+✅ Which department does Rahul work in?
+✅ List employees with more than 4 years experience
+✅ Who works in ML?
+
+❌ Company revenue → **Data not available**
+
+---
+
+# 🔥 Why This Design Is Correct
+
+* CSV → structured → converted to text
+* No SQL hallucination
+* Azure OpenAI (enterprise-safe)
+* Databricks handles scale
+* Easy to schedule as a job
+
+---
+
+# 🚀 Next-Level Enhancements (Highly Recommended)
+
+Since you’re on Databricks, next best steps:
+
+* 🔄 Incremental CSV ingestion (only new files)
+* 🗂 Metadata filters (department, role)
+* 🧠 Databricks Vector Search (instead of FAISS)
+* 🌐 FastAPI / MLflow deployment
+* 🔐 Unity Catalog governance
+* 📊 Hybrid SQL + RAG (best accuracy)
+
+---
+
+# 📌 Resume-Ready Bullet
+
+> Built a Databricks-based RAG pipeline using Azure OpenAI and LangChain to enable natural-language Q&A over CSV datasets stored in Azure Blob Storage, leveraging semantic embeddings and vector search for accurate, context-aware responses.
+
+---
+
+### What do you want next?
+
+👉 **Incremental ingestion**
+👉 **Databricks Vector Search**
+👉 **FastAPI endpoint**
+👉 **Text-to-SQL + CSV hybrid**
+
+Tell me and we’ll push this to **production-grade** 🚀
