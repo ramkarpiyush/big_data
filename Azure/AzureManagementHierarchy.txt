@@ -1,0 +1,10 @@
+# A management hierarchy defines governance boundaries for Azure resources.
+
+# Azure provides four management levels:
+1. Management Group:
+    - Helps to manage access, policy, and compliance for multiple subscriptions.
+2. Subscriptions
+    - Logically associate user accounts with the resources they create.
+3. Resource Groups
+    - Logical container where you can deploy and manage azure resources.
+4. resources

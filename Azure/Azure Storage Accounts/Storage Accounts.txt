@@ -1,0 +1,46 @@
+# Performance:
+1. Standard - General purpose v2.
+            - Recommended for most scenarios
+2. Premium  - High Performance workloads. 
+            - Low latency and high transaction rate.
+
+# Redundancy:
+- Azure provides multiple redundancy options to ensure that your data remains durable, highly available, and protected against failures. 
+- These redundancy models determine how and where your data is copied.
+
+1. LRS - Logically Redundant Storage
+2. GRS - Geo-Redundant Storage
+3. ZRS - Zone-Redundant Storage
+4. GZRS - Geo-Zone-Redundant Storage
+
+
+
+Azure offers above different Redundancy options to ensure that 
+- Our data remains available even in the hardware failure or power outage our dara remain intact
+- This Redundancy startegies reflects our data across different locations by providing protection against data loss and ensuring that business continuity gets maintained
+
+Purpose:
+1. Data protection      - Safeguards data from accidental loss, corruption, or infrastructure failure.
+2. High availablity     - Access data with minimal downtime 
+3. Disaster Recovery
+
+1. LRS - Logically Redundant Storage    - Replicates data 3 times within a single data center
+                                        - Most cost-effective, but not protected against datacenter outages.
+                                        - It does not protect against the data center wide Disaster like fire or flood.
+
+2. ZRS - Zone-Redundant Storage     - Data is replicated across 3 Azure availability zones within the same region.
+                                    - Data is replicated synchronously across 3 zones → meaning across 3 separate datacenters within the same region.
+                                    - Protects against zone-level failures (power outage, network issues, hardware failure in one zone).
+                                    - Ensures high durability and higher availability than LRS.
+
+3. GRS - Geo-Redundant Storage      - Data is replicated to a secondary region in addition to triple replication in the primary region.
+                                    - GRS = 3 copies in primary datacenter + 3 copies in secondary region → total 6 copies.        
+                                    - Provides protection against regional disasters (earthquakes, floods, etc.).                                
+
+4. GZRS - Geo-Zone-Redundant Storage    - Combines the benefits of ZRS + GRS. i.e. GZRS = ZRS in primary region + LRS in secondary region.
+                                        - Data is spread across availability zones in primary region, then geo-replicated to a secondary region.
+                                        - Most advanced resilience option currently available.          
+
+
+                                        
+                                                                  
