@@ -1,0 +1,37 @@
+1. Pipeline: The Delivery Route
+    - A pipeline is like a plan or route that tells ADF what steps to follow.
+
+2. Activity: Tasks in the Route
+    - Each pipeline contains activities, which are the individual tasks.
+    - types:
+        1. Data movement 
+        2. Data transformation
+        3. Control flow
+
+3. Datasets: 
+    - A dataset tells ADF where the data lives and in what format.
+    - Datasets are simply points or references the data, which you want to use in your activities as input or Output.
+
+4. Linked services: Connection Info
+    - A linked service is like a connection string ADF uses to log into systems.
+    - 
+
+5. Triggers: Start Timers
+    - Triggers decide when a pipeline should run.
+
+6. Integration Runtime (IR): The Delivery Vehicle
+    - The IR is the engine that actually performs the work (copying, transforming, moving data).
+    - Three types:
+        1. Azure IR – Microsoft-managed (fully cloud)
+        2. Self-hosted IR – your own machine or VM
+        3. SSIS IR – to run old SSIS packages
+
+7. Data Flows: Data Cleaning Factory
+    - Data flows allow you to transform data visually (no code).
+
+8. Control Flow: Logic / Decision Making
+    - Control flow helps pipelines make decisions.
+    - Examples:
+        - If a file exists → run step
+        - For each file → repeat
+        - Wait until a condition is met

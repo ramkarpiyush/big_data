@@ -1,0 +1,13 @@
+Azure Data Factory:
+    Name: ADF-ADB-Labs
+
+
+To interact with ADLS Gen2 first need to create a Linked Services:
+    Name: LS_AdlsGen2_Labs
+
+Dataset:
+    For Input File:
+        InputCSV_Dataset
+
+    For Output File:
+        OutParquet_Dataset
