@@ -1,0 +1,48 @@
+{
+  "company": "TechNova Solutions",
+  "location": "Pune",
+  "departments": [
+    {
+      "name": "Engineering",
+      "manager": "Anita Desai",
+      "employees": [
+        {
+          "id": 101,
+          "name": "Piyush Ramkar",
+          "role": "Data Engineer",
+          "skills": ["Python", "Spark", "SQL"],
+          "contact": {
+            "email": "piyush@technova.com",
+            "phone": "+91-9876543210"
+          }
+        },
+        {
+          "id": 102,
+          "name": "Suresh Kumar",
+          "role": "Backend Developer",
+          "skills": ["Java", "Spring Boot", "MySQL"],
+          "contact": {
+            "email": "suresh@technova.com",
+            "phone": "+91-9123456789"
+          }
+        }
+      ]
+    },
+    {
+      "name": "HR",
+      "manager": "Meera Nair",
+      "employees": [
+        {
+          "id": 201,
+          "name": "Neha Joshi",
+          "role": "HR Executive",
+          "skills": ["Recruitment", "Excel", "Communication"],
+          "contact": {
+            "email": "neha@technova.com",
+            "phone": "+91-9988776655"
+          }
+        }
+      ]
+    }
+  ]
+}

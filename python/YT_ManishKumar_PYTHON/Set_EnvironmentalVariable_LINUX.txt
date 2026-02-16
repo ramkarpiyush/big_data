@@ -1,0 +1,91 @@
+# List, Set and Manage Linux Environment Variables
+
+# A few key points to keep in mind when working with Linux environment variables are:
+1. Environment variables follow <NAME>=<VALUE> formatting.
+2. You can specify multiple values for a single variable by separating them with colons like this: <NAME>=<VALUE1>:<VALUE2>:<VALUE3>
+3. Environment variables are case-sensitive.
+4. By convention, but not rule, environment variable names are always capitalized.
+5. Shell variables are not the same as environment variables. Shell variables only apply to the current shell, not any child processes. 
+
+# LIST a Linux environment variables:
+1. printenv 
+    > The <printenv> command displays the current environment variables.
+
+    > To display individual environment variables. 
+        syntax: printenv <env_variable_name>
+    
+2. env
+    > The <env> command can list all environment variables with output similar to <printenv>
+    > 
+
+3. echo $<variable_name>
+    > To display a single Linux environment variable
+
+    **The echo $<variable_name> command also works for shell variables that are NOT environment variables. 
+
+4. declare 
+    > This built-in shell utility can display shell and environment variables using this command.
+
+5. set 
+    > Displays shell variables, environment variables, and shell functions.    
+
+6. compgen -v 
+    > Displays the names of all your shell and environment variables (without their values).
+
+
+# SET a Linux Environmental Variables:
+    > syntax: export <NAME>='<value>'
+
+# Create a Shell Variables:
+    > syntax: <NAME>='<value>'
+
+** Think of shell variables as LOCAL variables in a function, and environment variables as GLOBAL variables that child processes can see.
+
+# Convert a Shell Variable to an Environment Variable:
+    syntax: export <Shell_Variable_Name>
+
+
+# How to Delete Linux Environment Variables
+    syntax: unset <env_variable_name>
+
+# How to Make Linux Environment Variables Permanent
+    > The environment variables we’ve created so far will only last for the duration of your shell session. 
+    > If you log out or reboot, you would need to recreate them if you want to use them.
+
+    METHOD 1: Use .profile
+        - The .profiile file exists in a user’s home directory. 
+        - You can add environment variables for a user by editing their .profile file to include export commands to set environment variables.
+        - Steps:
+            1. Change the directory to the user’s home directory cd ~
+            2. Open .profile file in a text editor (e.g. nano, vi, vim, etc.)
+            3. Add the following line to the bottom of the file: export <ENV_VAL_NAME>='<value>'
+            4. Save the changes
+
+        - The changes will take effect on the next login. 
+            You can make them take effect for the current terminal using this command:
+            syntax: <. ~/.profile>
+
+    METHOD 2: Use .bashrc
+        - For non-login shells, you can follow the same process as login shells, but instead of editing ~/.profile file, edit ~/.bashrc.
+
+    METHOD 3: Use /etc/environment
+        - Use /etc/environment to Make Environment Variables Permanent System-wide
+        - To set system-wide Linux environment variables, you can edit the /etc/environment file. Instead of appending export commands to the file, append the <NAME>='<VALUE>' pair to the end of the file.
+        - Steps:
+            1. Change directory to the user’s home directory cd /etc
+            2. Open environment file in a text editor (e.g. nano, vi, vim, etc.)
+            3. Add the following line to the bottom of the file <ENV_VAL_NAME>='<value>'
+            4. Save the changes
+
+
+
+
+
+
+
+
+
+
+
+
+

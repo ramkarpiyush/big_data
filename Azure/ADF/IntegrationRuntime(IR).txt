@@ -1,0 +1,66 @@
+# Integration Runtime (IR):
+- IR = The engine (compute) that Azure Data Factory uses to actually perform tasks.
+- ADF itself is only the orchestrator
+- The IR is the actual worker that does the real work such as:
+    - Moving data
+    - Transforming data
+    - Connecting to data sources
+    - Executing compute tasks
+- ADF can’t directly access data or run transformations on its own—it always uses an IR.
+- IR = ADF’s execution engine (compute + connectivity + logic)
+    - Think of it as a combination of:
+        - Compute (VMs, nodes, memory, CPU)
+        - Networking (to reach your sources)
+        - Optional clustering (for scaling/parallelism)
+- ADF only triggers pipelines -> IR actually executes them.
+
+# Types of Integration Runtimes (IR):
+1. Azure Integration Runtime
+2. Self-Hosted Integration Runtime
+3. Azure-SSIS Integration Runtime
+
+1. Azure Integration Runtime:
+- Azure Integration Runtime is a Microsoft‑managed, serverless compute environment that can scale into a cluster for Data Flows.
+- ADF uses scalable Azure infrastructure to:
+    - Copy/move data between cloud sources
+    - Execute data flows
+    - Connect to SaaS services
+
+- Azure IR has two execution modes depending on the task:    
+    1. Azure IR as Simple Compute:
+        - Used when running Copy activities or Lookup, Get Metadata, web calls, etc.
+    
+    2. Azure IR as a Cluster (Cluster mode):
+        - Azure IR automatically becomes a Spark cluster ONLY when you run:
+            - Mapping Data Flows
+            - Wrangling Data Flows
+            - (Synapse) Data Flow activities
+- Note:  
+    Azure IR = Compute for data movement
+    Azure IR = Cluster for data transformations (Data Flows)
+
+2. Self-Hosted Integration Runtime (SHIR):
+- A runtime you install on your on-premise server or VM.
+- Used when Azure cannot directly reach your data source.
+- Why it exists?
+    For on-prem → cloud or private network → cloud movement.
+- Enterprise Use Case:
+    Connecting On‑Prem Data Warehouse or ERP
+    Example: A bank wants to extract customer data from On‑Prem Oracle DB (behind firewall) → Azure Data Lake.
+    - Because the Oracle server is inside the corporate network, ADF can’t access it.
+    - So we install SHIR inside the network. SHIR acts like a:
+        - Secure bridge/tunnel
+        - Executes copy commands
+        - Pushes data to Azure
+
+3. Azure-SSIS Integration Runtime:
+- A cluster of servers running SQL Server Integration Services (SSIS) packages as-is in Azure.
+- This is for organizations migrating old SSIS ETL pipelines without rewriting.
+- Enterprise Use Case: Lift & shift of existing ETL
+    - A healthcare company has 500 SSIS packages doing:
+        - Patient data loading
+        - Claims transformations
+        - File-based ingestion
+
+    - They want to move to cloud but keep SSIS.
+    - Azure-SSIS IR allows running the packages in ADF without rewriting into Data Flows.

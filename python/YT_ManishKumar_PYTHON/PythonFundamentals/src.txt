@@ -1,0 +1,7 @@
+# To change the path in Command Prompt (CMD):
+    > syntax: cd /d <full_path>
+    > where,
+        - /d allows you to change drive letters as well as directories.
+        - <full_path> is the absolute path you want to switch to.
+
+    

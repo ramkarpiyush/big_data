@@ -1,0 +1,21 @@
+Credential name: 
+StorageCredential-CSB-B12-Gen-AI-DB
+
+External location name:
+ExtLoc-CSB-B12-Gen-AI-DB
+
+Storage account name
+adlsgen2csbb12genaidb11
+
+Access Connector for Azure Databricks:
+access-connector-adb
+
+Resource ID:
+/subscriptions/96833257-3250-4f65-a209-7f4a0b7bbb5e/resourceGroups/CSB-B12-Gen-AI-DB-11-2026/providers/Microsoft.Databricks/accessConnectors/access-connector-adb
+
+
+Blob SAS token:
+sp=racw&st=2026-01-30T14:21:53Z&se=2026-01-30T22:36:53Z&spr=https&sv=2024-11-04&sr=c&sig=erowuNaWQk8f2zJmrTuXELUDqI01kQjCR7gA3Tu8JSs%3D
+
+Blob SAS URL:
+https://csbb12genaidb11storage.blob.core.windows.net/demo?sp=racw&st=2026-01-30T14:21:53Z&se=2026-01-30T22:36:53Z&spr=https&sv=2024-11-04&sr=c&sig=erowuNaWQk8f2zJmrTuXELUDqI01kQjCR7gA3Tu8JSs%3D

@@ -1,0 +1,61 @@
+1. git init
+Purpose: Initializes a new Git repository in your current directory.
+Usage: Run git init to start tracking your project with Git
+
+2. git clone
+Purpose: Creates a copy of an existing repository on your local machine.
+Usage: Run git clone <repository_url> to download a repository.
+
+3. git add
+Purpose: Stages changes in your working directory for the next commit.
+Usage: Use git add <file> or git add . to add all changes.
+
+4. git commit
+Purpose: Commits staged changes to the repository with a descriptive message.
+Usage: Run git commit -m "Your message" to save your changes.
+
+5. git status
+Purpose: Shows the status of changes in your working directory.
+Usage: git status lets you see which files are modified, staged, or untracked.
+
+6. git push
+Purpose: Pushes your commits to a remote repository, like GitHub.
+Usage: Use git push origin <branch_name> to upload changes.
+
+7. git pull
+Purpose: Fetches and merges updates from a remote repository.
+Usage: Run git pull origin <branch_name> to sync your local branch.
+
+8. git branch
+Purpose: Manages branches within your repository.
+Usage: Use git branch to list branches or git branch <branch_name> to create a new one.
+
+9. git checkout
+Purpose: Switches to a different branch or restores files.
+Usage: Run git checkout <branch_name> to switch branches or git checkout <file> to revert a file.
+
+10. git merge
+Purpose: Merges one branch into another.
+Usage: Use git merge <branch_name> to integrate changes from one branch into the current branch.
+
+11. git log
+Purpose: Displays the commit history.
+Usage: Run git log to see a list of past commits, along with their messages and details.
+
+12. git diff
+Purpose: Shows the differences between commits, branches, or your working directory and the last commit.
+Usage: Use git diff to compare changes and git diff <commit1> <commit2> to see differences between two commits.
+
+Extended Git Commands:
+
+git fetch: Retrieve updates from a remote repository without merging.
+git rebase: Apply commits on top of another base commit.
+git reset: Undo changes in the working directory or commit history.
+git stash: Temporarily save changes for later use.
+git tag: Mark specific points in history with a tag.
+git remote: Manage remote repository connections.
+git show: Show detailed information about a commit.
+git revert: Create a new commit that undoes a previous commit.
+git blame: Show who modified each line in a file.
+git cherry-pick: Apply specific commits from another branch.
+git rm: Remove files from the working directory and staging area.

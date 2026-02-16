@@ -1,0 +1,114 @@
+# Set Environmental Variables
+# For Windows:
+
+# Using CMD:
+Method 1: PERMANENT
+    > Commands:
+        setx DB_USER "root"
+        setx DB_PASS "12345678"
+
+    > You will see:
+        SUCCESS: Specified value was saved.
+
+    > 1. Close CMD
+      2. Close VS Code
+      3. Reopen VS Code -> Open NEW terminal
+
+      Then test:
+      echo %DB_USER%
+      echo %DB_PASS%
+
+Method 2: TEMPORARY
+    > Commands:
+        set DB_USER=root
+        set DB_PASS=12345678
+
+    > You will see:
+        SUCCESS: Specified value was saved.
+
+      Then test:
+      echo %DB_USER%
+      echo %DB_PASS%    
+      
+    > if you close CMD -> these values are gone
+
+
+# Using PowerShell:
+    > Command:
+        [Environment]::SetEnvironmentVariable("KEY", "VALUE", "SCOPE")
+
+        **The SCOPE parameter must be one of the following: ["User", "Machine", "Process"].
+
+METHOD 1: PERMANENT (User-Level – Recommended)
+    > This saves the variable for your Windows user only (most common & safest).
+
+    > Commands:
+        [Environment]::SetEnvironmentVariable("DB_USER", "root", "User")
+        [Environment]::SetEnvironmentVariable("DB_PASS", "Strong@123", "User")
+
+    > Close PowerShell & Reopen
+        Now test:
+        echo $env:DB_USER
+        echo $env:DB_PASS
+        
+        Output:
+        root
+        Strong@123
+        
+        **Now Python, VS Code, CMD, Spark—everything can read it.
+
+METHOD 2: PERMANENT (System-Level – For All Users)
+    > Requires Run as Administrator
+
+    > Open PowerShell as ADMIN
+        Right-click → Run as Administrator
+
+    > Commands:
+        [Environment]::SetEnvironmentVariable("DB_USER", "root", "Machine")
+        [Environment]::SetEnvironmentVariable("DB_PASS", "Strong@123", "Machine")
+
+    >Restart VS Code / CMD
+        Then test:
+        echo $env:DB_USER
+        echo $env:DB_PASS
+
+
+METHOD 3: TEMPORARY METHOD (Only for Current Session)
+    > Will be LOST after closing PowerShell:
+
+    > Commands:
+        [Environment]::SetEnvironmentVariable("DB_USER", "root", "Process")
+        [Environment]::SetEnvironmentVariable("DB_PASS", "Strong@123", "Process")
+
+    >Restart VS Code / CMD
+        Then test:
+        $env:DB_USER = "root"
+        $env:DB_PASS = "Strong@123"
+
+
+# Delete Environment Variables Safely
+
+# Using PowerShell:
+    > Commands:
+        [Environment]::SetEnvironmentVariable("DB_USER", $null, "User")
+        [Environment]::SetEnvironmentVariable("DB_USER", $null, "Machine")
+
+    > Then Restart PowerShell terminal.
+
+# Using CMD:
+    > CMD doesn't have direct Delete, but you can overwrite with empty:
+
+    > Commands:
+        setx DB_USER ""
+        setx DB_PASS ""
+
+    > Then close CMD and Open new CMD
+        Test:
+        echo %DB_USER%
+        echo %DB_PASS%
+
+        **If it prints blank -> Deleted
+
+
+
+

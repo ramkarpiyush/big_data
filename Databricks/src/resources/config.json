@@ -1,0 +1,38 @@
+[
+    {
+        "table_name": "customer",
+        "primary_key": "customer_id",
+        "source": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\src_tables\\customers.csv",
+            "format": "csv"
+        },
+        "target": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\tgt_tables\\customers.csv",
+            "format": "csv"
+        }
+    },
+    {
+        "table_name": "orders",
+        "primary_key": "order_id",
+        "source": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\src_tables\\orders.csv",
+            "format": "csv"
+        },
+        "target": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\tgt_tables\\orders.csv",
+            "format": "csv"
+        }
+    },
+    {
+        "table_name": "transactions",
+        "primary_key": "txn_id",
+        "source": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\src_tables\\transactions.csv",
+            "format": "csv"
+        },
+        "target": {
+            "path": "D:\\GitLocal\\big_data\\Databricks\\data_reconciliation\\tgt_tables\\transactions.csv",
+            "format": "csv"
+        }
+    }
+]

@@ -1,0 +1,33 @@
+# Triggers - You can execute your pipeline
+- Triggers determines when a pipeline execution needs to be kicked off.
+
+- Pipeline and Triggers have a many-to-many relationship (except for the tumbling windows trigger).
+- Multiple trigers can kick-off a single pipeline, or a single triger can kick-off Multiple pipelines.
+
+# Types of Triggers:
+1. Scheduled triger:
+    - A trigger that invoke a pipeline on a wall-clock Schedule.
+    - Does NOT keep state — it only runs from now → future.
+    - Scheduled trigger runs only from present to future
+
+2. Tumbling window trigger: (Fixed Windows With No Overlap)
+    - A trigger that operates on a periodic interval, while also retaining state.
+    - Keeps state and ensures each time window is processed exactly once.
+    - To handle the historical data we can use this trigger. 
+    - It works with future and past windows also.
+    e.g. Suppose you have hourly sales data arriving into a data lake:
+        Window 1 → 00:00–01:00
+        Window 2 → 01:00–02:00
+        Window 3 → 02:00–03:00
+        If one window fails, only that window is re‑run—preserving correctness.
+
+    - 
+
+3. Event-based trigger:
+    - A trigger that responds to an Event.
+    - Types:
+        1. Storage
+        2. Custom
+
+
+# Event Grid?

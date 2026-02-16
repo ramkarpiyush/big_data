@@ -1,0 +1,81 @@
+#Setup the connection:
+
+1. Create ssh key for Local Repo
+	ssh-keygen									-- It used to generate SSH keys, which are essential for secure communication between your local machine and remote servers.
+	
+	SSH Key file Path: 
+	user_name/.ssh/file_name.pub
+	
+	#Example:
+	piyush.ramkar@impetus-bl0672 MINGW64 ~/.ssh
+	$ pwd
+	/c/Users/piyush.ramkar/.ssh
+	
+	piyush.ramkar@impetus-bl0672 MINGW64 ~/.ssh
+	$ ls -lrt
+	total 10
+	-rw-r--r-- 1 piyush.ramkar 1049089   92 Jun 11  2024 known_hosts.old
+	-rw-r--r-- 1 piyush.ramkar 1049089  828 Jun 11  2024 known_hosts
+	-rw-r--r-- 1 piyush.ramkar 1049089 2622 Feb 11 23:15 id_rsa
+	-rw-r--r-- 1 piyush.ramkar 1049089  582 Feb 11 23:15 id_rsa.pub
+	
+	piyush.ramkar@impetus-bl0672 MINGW64 ~/.ssh
+	$ cat id_rsa.pub							-- To display the contenet of file id_rsa.pub
+	ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDX3ku/LUIWt3NbEzH8tCPnoobWFEJZPtKjsJaRq5+hAPITWyVyRcdABGEm6Z/y2ZDyKcT/CSfMlFOHua4/B/sY+82J8UG4WMUubzL9K4deHM+0m2rPe52ahWIfl2oxITNm6ERKTZ+yjn2oXEzPwWk+EotCr+Hus4k5goKjjuPVEA7l+qgXustJG3Iv+Br4ahQvhYbL9ASzqlIWcwRk6dnLygFD1cyw8nb13NvJM68uJk3nBUZAw2d4MQgoljQIiqYGfVCU/SiAM/GtuI2VLUDjBjpye1K0ux3pmKL3fzu3E/3TlmvfRukgV0mUdm3tAeSqLoLeeCJyOqtKI0V5aunWaNj0IyNa9u7reWbIS3gpZg2/Rw8L4rZQ3gMegzyrg25tXbNTg6dJO9w1AIkRLMfWAwD1LffVw6fY2I+3luljWpLP7q68tJ0v8RhiAF9ug8dYp4CFpNWWvyZfuh3kmfvYfLEKWb5afUWDk0L757yO75ULWvP5Ctb6PKs9aCMOR68= piyush.ramkar@impetus-bl0672
+	
+	# The above output is an SSH public key, which can be added to GitHub account for secure authentication.
+
+2. Add the SSH key to GitHub:
+	1. Go to GitHub and log in to your account.
+	2. Navigate to Settings (click on your profile picture in the top right corner and select "Settings").
+	3. In the left sidebar, click on SSH and GPG keys.
+	4. Click the New SSH key button.
+	5. Give your key a descriptive title (e.g., "My Laptop SSH Key").
+	6. Paste the copied SSH key into the "Key" field.
+	7. Click the Add SSH key button.
+	8. Now your SSH key is added to your GitHub account, and you can use it for secure communication with your repositories.
+	
+3. git init
+	# The git init command is used to initialize a new Git repository. 
+	# This command sets up the necessary files and directories that Git uses to track changes in your project. 
+	# What git init Does:
+		1. Creates a .git directory: This hidden directory contains all the metadata and object files that Git uses to manage the repository.
+		2. Sets up the initial structure: It prepares the directory for version control, allowing you to start tracking changes to your files.
+	# When to Use git init
+		1. Starting a new project: When you begin a new project and want to use Git for version control.
+		2. Converting an existing project: When you have an existing project that you want to start tracking with Git.
+		
+4. Setting up Git Username:
+
+	git config --global user.email "your_email@example.com"
+	# To set email address in Git
+
+	git config --global user.email "your_email@example.com"			
+	# To set your username in Git
+	# This command sets your username globally, meaning it will apply to all repositories on your machine. 
+	
+	git config user.name "Your Name"
+	# To set the username for a specific repository, navigate to that repository and run above command
+	
+	#Uses:
+		1. Identify Your Commits: Git uses the username to identify who made each commit. This is important for tracking changes and collaboration.
+		2. Consistency Across Repositories: Setting the username globally ensures that all your commits across different repositories are associated with the same identity.
+		3. Collaboration: When working on collaborative projects, having a consistent username helps team members recognize your contributions.
+		
+		
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

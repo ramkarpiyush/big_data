@@ -1,0 +1,65 @@
+# How Databricks Authenticates to Azure Blob Storage:
+
+1. Shared Access Signatures (SAS Tokens)
+2. Using Access Keys:
+3. Managed Identity (Supported via OAuth, Better for Avoiding Secrets)
+Databricks can use Managed Identity to obtain tokens, enabling secure access using Azure SDKs or Spark ABFS configs.
+
+# How Databricks Authenticates to ADLS Gen2
+1. Service Principal + OAuth:
+You create an Azure AD Service Principal, grant it permissions on the ADLS Gen2 filesystem (using ACLs), and Databricks uses OAuth tokens to authenticate.
+
+Note: Azure Databricks does support OAuth 2.0 (Service Principal) authentication — but NOT for Blob Storage.
+
+2. Managed Identity:
+    1. If you are using Azure Databricks Premium Tier, your workspace   supports Managed Identity authentication.
+    2. Azure Databricks can have:
+        - A system‑assigned managed identity, or
+        - A user‑assigned managed identity
+    3. You grant the managed identity the required permissions on ADLS Gen2     (Storage Blob Data Contributor, ACLs, etc.).
+    4. Databricks then authenticates without storing any credentials.
+
+3. Using Access Keys:
+
+Authenticate Using Access Keys:
+1. Each storage account comes with 2 Keys
+2. Gives full Access to the storage account
+3. Keys can be rotated
+
+In order to access the data from Databricks, we need to provide one of the access keys to Azure Databricks, so that it can authenticate to the ADLs Gen2 service.
+
+
+
+
+Note: Databricks can authenticate to Blob Storage using the storage account’s access keys.
+
+
+# Configure Spark to Use the Access Key:
+
+1. Blob Storage uses the blob.core.windows.net endpoint and the WASB/S driver.
+
+spark.conf.set(
+    "fs.azure.account.key.<storage-account-name>.blob.core.windows.net",
+    "<access key>")
+
+
+2. ADLS Gen2 uses the dfs.core.windows.net endpoint and the ABFS/ABFSS driver. Account keys won’t work here.
+so you must use SAS or OAuth (service principal / managed identity) with ABFS
+
+spark.conf.set(
+    "fs.azure.account.key.<storage-account-name>.dfs.core.windows.net",
+    "SAS")
+
+Note: You can’t use storage account access key to access data using the abfss protocol. You must use SAS, Service Principal (OAuth), or Managed Identity.
+
+
+# Aceess Keys - ABFS Driver:
+Microsoft and Azure Databricks strongly recommend using the ABFS driver instead of direct HTTP access when working from Databricks.
+1. ABFS Is the Native Filesystem Driver for ADLS Gen2
+2. HTTP / REST Access Is Not Optimal for Analytics Workloads
+3. ABFS Supports Modern Authentication (SAS, OAuth, Managed Identity)
+
+
+abfss://<container_name>@<storage_account_name>.dfs.core.windows.net/<folder_path/file_name>
+
+    abfss[s]:// : The Optional "s" ensures TLS (Transport Level Security). The Data will encrypted while transit.

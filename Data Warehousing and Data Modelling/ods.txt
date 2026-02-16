@@ -1,0 +1,8 @@
+# ODS:
+# Operational Data Store (ODS):
+- An Operational Data Store (ODS) is a centralized database that integrates real-time data from various sources to support operational reporting and decision-making.
+- It is a type of database that collects and combines data from various sources. 
+- It provides a unified view of this data and offers real-time or near-real-time updates.
+- Unlike data warehouses that store historical data, an ODS focuses on providing current data for immediate use.
+- It acts as a bridge between transactional systems and data warehouses, ensuring data consistency and quick access to up-to-date information. 
+

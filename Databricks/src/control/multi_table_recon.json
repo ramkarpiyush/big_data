@@ -1,0 +1,117 @@
+{
+    "job_name": "Multi_Table_ETL_Reconciliation",
+    "run_time": "2025-12-23 23:25:17.387781",
+    "tables": [
+        {
+            "table_name": "customer",
+            "run_time": "2025-12-23 23:25:17.387781",
+            "source": {
+                "table": "source",
+                "record_count": 10,
+                "distinct_pk": 10,
+                "null_pk_count": 0,
+                "min_pk": 1001,
+                "max_pk": 1010,
+                "status": "SUCCESS"
+            },
+            "target": {
+                "table": "target",
+                "record_count": 10,
+                "distinct_pk": 10,
+                "null_pk_count": 0,
+                "min_pk": 1001,
+                "max_pk": 1010,
+                "status": "SUCCESS"
+            },
+            "data_validation": {
+                "src_count": 10,
+                "tgt_count": 10,
+                "record_count_match": true,
+                "missing_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "hash_validation": {
+                "checksum_match": true,
+                "extra_in_source": 0,
+                "extra_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "final_status": "FAILED",
+            "error": "'sql_validation'"
+        },
+        {
+            "table_name": "orders",
+            "run_time": "2025-12-23 23:25:25.276009",
+            "source": {
+                "table": "source",
+                "record_count": 15,
+                "distinct_pk": 15,
+                "null_pk_count": 0,
+                "min_pk": 5001,
+                "max_pk": 5015,
+                "status": "SUCCESS"
+            },
+            "target": {
+                "table": "target",
+                "record_count": 15,
+                "distinct_pk": 15,
+                "null_pk_count": 0,
+                "min_pk": 5001,
+                "max_pk": 5015,
+                "status": "SUCCESS"
+            },
+            "data_validation": {
+                "src_count": 15,
+                "tgt_count": 15,
+                "record_count_match": true,
+                "missing_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "hash_validation": {
+                "checksum_match": true,
+                "extra_in_source": 0,
+                "extra_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "final_status": "FAILED",
+            "error": "'sql_validation'"
+        },
+        {
+            "table_name": "transactions",
+            "run_time": "2025-12-23 23:25:27.020471",
+            "source": {
+                "table": "source",
+                "record_count": 25,
+                "distinct_pk": 25,
+                "null_pk_count": 0,
+                "min_pk": 90001,
+                "max_pk": 90025,
+                "status": "SUCCESS"
+            },
+            "target": {
+                "table": "target",
+                "record_count": 25,
+                "distinct_pk": 25,
+                "null_pk_count": 0,
+                "min_pk": 90001,
+                "max_pk": 90025,
+                "status": "SUCCESS"
+            },
+            "data_validation": {
+                "src_count": 25,
+                "tgt_count": 25,
+                "record_count_match": true,
+                "missing_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "hash_validation": {
+                "checksum_match": true,
+                "extra_in_source": 0,
+                "extra_in_target": 0,
+                "status": "SUCCESS"
+            },
+            "final_status": "FAILED",
+            "error": "'sql_validation'"
+        }
+    ]
+}

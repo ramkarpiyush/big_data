@@ -1,0 +1,7 @@
+# What is the difference between the Standard Azure Blob Storage and the Data Lake Storage (ADLS Gen2):
+1. Azure Data Lake Storage Gen2 (ADLS Gen2) is built on top of Azure Blob Storage.
+2. Data Lake Storage comes with a hierarchical namespace (HNS).
+    - Blob Storage without HNS has only a flat namespace
+3. HNS helps with folder structures and fine grained access control to the data files.
+    - Standard Blob Storage traditionally uses only Azure RBAC + SAS, and cannot apply POSIX ACLs.
+4. ADLS Gen2 is designed specifically for analytics workload

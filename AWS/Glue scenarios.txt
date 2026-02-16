@@ -1,0 +1,7 @@
+# AWS Glue Crawler behavior with JSON files in the same S3 location: 
+when you added another JSON file with a slightly different schema (two common columns + some new columns, and one old column removed), the crawler did not create a new table—it updated the schema of the existing table. That’s expected.
+
+# Why it happens?
+Crawler scope = S3 path: A Glue crawler discovers data per S3 location. If multiple files live under the same crawled prefix, the crawler assumes they belong to the same dataset (unless partitioning rules or patterns split them).
+Schema evolution: For semi‑structured formats like JSON, Glue infers a merged schema across files under that path. When it finds new fields, it adds columns; when some files no longer have a field, the column typically remains in the table but may be nullable and show NULL for files that don’t contain it.
+Crawler schema change policy: With default settings (UpdateBehavior=UPDATE_IN_DATABASE), Glue updates the existing table rather than creating a new one.

@@ -1,0 +1,9 @@
+# COPY ACTIVITY:
+- Linked Service: 
+    - The Linked Service established a connection between Data Source and Azure Data Factory.
+    - Provide a necessary credentials, connection details to ADF.
+
+- Dataset:
+    - Define the strucure and location of the data within the Data Source.
+    - Purpose: Specify which data in the Data SOurce should be accessed by the ADF including the file path and data format.
+    - 
