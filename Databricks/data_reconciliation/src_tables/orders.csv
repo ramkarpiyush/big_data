@@ -1,0 +1,16 @@
+order_id,customer_id,order_date,status,total_amount,currency,shipping_method
+5001,1001,2025-01-02,placed,1599.0,INR,Standard
+5002,1001,2025-01-10,shipped,2499.0,INR,Express
+5003,1002,2025-01-12,delivered,899.0,INR,Standard
+5004,1003,2025-01-14,cancelled,0.0,INR,Standard
+5005,1004,2025-01-15,placed,4999.0,INR,Express
+5006,1005,2025-01-16,delivered,1299.0,INR,Standard
+5007,1006,2025-01-17,delivered,649.0,INR,Standard
+5008,1007,2025-01-18,placed,2799.0,INR,Express
+5009,1008,2025-01-19,shipped,3499.0,INR,Express
+5010,1009,2025-01-21,delivered,399.0,INR,Standard
+5011,1010,2025-01-22,placed,999.0,INR,Standard
+5012,1002,2025-01-23,delivered,1799.0,INR,Express
+5013,1003,2025-01-24,shipped,2199.0,INR,Standard
+5014,1005,2025-01-25,placed,2899.0,INR,Express
+5015,1007,2025-01-26,delivered,749.0,INR,Standard
